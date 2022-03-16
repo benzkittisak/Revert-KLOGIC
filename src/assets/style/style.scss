@@ -1,0 +1,13 @@
+@import './variable';
+
+@import './login';
+@import './layout.master';
+
+.btn-coral{
+    background: $coral !important;
+    transition:.3s ease-in-out;
+
+    &:hover{
+        background:rgb(219, 108, 68) !important;
+    }
+}
