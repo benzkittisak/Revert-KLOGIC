@@ -9,7 +9,7 @@ const MainHeader = () => {
             </Link>
             <nav className="navbar navbar-static-top" role="navigation">
                 <a href="#" data-toggle="push-menu" className="sidebar-toggle" role="button">
-                    <span className="sr-only">Toggle navigation</span>
+                    <span className="sr-only"><i className="fas fa-bars"></i></span>
                 </a>
             </nav>
         </header>
