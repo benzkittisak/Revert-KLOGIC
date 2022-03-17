@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import {Link} from 'react-router-dom';
-import axios from "axios";
-import MEMBER_DATA from '../../assets/data/member.data';
+import { connect } from "react-redux";
+import {signInStart} from '../../redux/user/user.actions';
 
-const LoginPage = () => {
+const LoginPage = ({signInStart}) => {
   const [userData, setUserData] = useState({ username: "", password: "" });
   
   const handleChange = (e) => {
@@ -13,23 +12,7 @@ const LoginPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post(`http://localhost:9000/api/province/find/622cae1a7e014563065a21c6`)
-    .then((res) => {
-        if(username.match(/[a-zA-Zก-ฮ]/g) || username.length > 13){
-            return alert("ใส่ให้ถูกสิว๊ะ")
-        }
-        else if(res.data){
-           if(password !== MEMBER_DATA.password){
-               return alert("รหัสผ่านไม่ถูกต้อง")
-           }
-           else {
-               return alert("เข้าสู่ระบบสำเร็จ")
-           }
-        }
-        else {
-            return alert("ไม่พบข้อมูล")
-        }
-    })
+    signInStart({username , password})
   }
 
   const {username , password} = userData;
@@ -71,11 +54,15 @@ const LoginPage = () => {
           />
         </div>
         <div className="col-lg-12 mb-3 d-flex justify-content-end">
-          <Link to={process.env.PUBLIC_URL + '/account'} className="btn btn-coral">เข้าสู่ระบบ</Link>
+          <button type="submit" className="btn btn-coral">เข้าสู่ระบบ</button>
         </div>
       </form>
     </div>
   );
 };
 
-export default LoginPage;
+const mapDispatchToProps = (dispatch) => ({
+  signInStart: (usernameAndPassword) => dispatch(signInStart(usernameAndPassword)),
+})
+
+export default connect(null, mapDispatchToProps)(LoginPage);
