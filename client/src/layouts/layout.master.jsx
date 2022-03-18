@@ -8,7 +8,9 @@ const MasterLayout = ({children}) => {
         <>
             <MainHeader/>
             <SideMenu/>
-            {children}
+            <div className="content-wrapper">
+                {children}
+            </div>
         </>
     )
 }

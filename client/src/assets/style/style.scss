@@ -1,7 +1,9 @@
 @import './variable';
+@import './layout.master';
+
 
 @import './login';
-@import './layout.master';
+@import './global';
 
 .btn-coral{
     background: $coral !important;
